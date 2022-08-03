@@ -1,0 +1,50 @@
+﻿@page "/devices"
+@inject IDeviceService DeviceSerivce;
+@inject NavigationManager NavigationManager
+
+<h3>Devices</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Brand</th>
+            <th>Version</th>
+            <th>Color</th>
+            <th>User</th>
+            <th>ProblemSummary</th>
+            <th>DateOfArrival</th>
+            <th>Voucher</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var d in DeviceSerivce.Devices)
+        {
+            <tr>
+                <td>@d.Type</td>
+                <td>@d.Brand</td>
+                <td>@d.Version</td>
+                <td>@d.Color</td>
+                <td>@d.User</td>
+                <td>@d.ProblemSummary</td>
+                <td>@d.DateOfArrival</td>
+                <td>@d.Voucher</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(() => SeeDevice(d.Id))"><i class="oi oi-pencil"></i></button>
+                </td>
+            </tr>
+         }
+    </tbody>
+</table>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await DeviceSerivce.GetDevices();
+    }
+
+    void SeeDevice(int id)
+    {
+        NavigationManager.NavigateTo($"device/{id}");
+    }
+}

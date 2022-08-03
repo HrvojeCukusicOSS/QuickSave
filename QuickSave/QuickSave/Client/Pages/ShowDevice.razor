@@ -1,0 +1,33 @@
+﻿@page "/device"
+@page "/device/{id:int}"
+@inject IDeviceService DeviceService
+
+@if (Id == null)
+{
+    <PageTitle>Add a new device</PageTitle>
+    <h3>Add a new device</h3>
+}
+else
+{
+    <PageTitle>Edit @device.Brand @device.Version</PageTitle>
+    <h3>Edit @device.Brand @device.Version</h3>
+}
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+    Device device = new Device {User = new User()};
+    
+    protected override async Task OnParamtersSetAsync()
+    {
+        if (Id == null)
+        {
+            device.User = DeviceService.Users[0];
+            device.UserId = device.User.Id;
+        }
+        else
+        {
+            device = await DeviceService.GetSingleDevice((int)Id);
+        }
+    }
+}
