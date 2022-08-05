@@ -8,12 +8,12 @@ namespace QuickSave.Persistence.Infrastructure
 {
     public abstract class DesignTimeDbContextFactoryBase<T> : IDesignTimeDbContextFactory<T> where T : DbContext
     {
-        private const string ConnectionStringName = "IdentityDatabase";
+        private const string ConnectionStringName = "QuickSaveDatabase";
         private const string AspNetCoreEnvironment = "ASPNETCORE_ENVIRONMENT";
 
         public T CreateDbContext(string[] args)
         {
-            var basePath = Directory.GetCurrentDirectory() + string.Format("{0}..{0}Sindikat.Identity.API", Path.DirectorySeparatorChar);
+            var basePath = Directory.GetCurrentDirectory() + string.Format("{0}..{0}QuickSave.API", Path.DirectorySeparatorChar);
             return Create(basePath, Environment.GetEnvironmentVariable(AspNetCoreEnvironment));
         }
 

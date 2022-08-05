@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Sindikat.Identity.Domain.Models.User;
-using Sindikat.Identity.Persistence.Repository;
+using QuickSave.Domain.Models.User;
+using QuickSave.Persistence.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

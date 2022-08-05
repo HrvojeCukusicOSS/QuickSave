@@ -5,13 +5,13 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Sindikat.Identity.Domain.Entities;
-using Sindikat.Identity.Domain.Models.Account;
+using QuickSave.Domain.Entities;
+using QuickSave.Domain.Models.Account;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Sindikat.Identity.Infrastructure.Auth;
+using QuickSave.Infrastructure.Auth;
 
 namespace Sindikat.Identity.API.Controllers
 {
