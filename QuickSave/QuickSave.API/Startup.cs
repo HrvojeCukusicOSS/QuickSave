@@ -44,7 +44,7 @@ namespace QuickSave.API
 
             services.AddDbContext<Persistence.DatabseContext.IdentityDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("IdentityDatabase"));
+                options.UseSqlServer(Configuration.GetConnectionString("QuickSaveDatabase"));
             });
 
             services.AddIdentity<User, IdentityRole>()
