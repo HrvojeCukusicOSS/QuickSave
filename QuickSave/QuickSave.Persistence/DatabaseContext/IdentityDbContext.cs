@@ -32,16 +32,35 @@ namespace QuickSave.Persistence.DatabseContext
 
             return base.SaveChanges();
         }
-
+        DbSet<Device> Devices { get; set; }
+        DbSet<Invoice> Invoices { get; set; }
+        DbSet<Part> Parts { get; set; }
+        DbSet<Voucher> Vouchers { get; set; }
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return await base.SaveChangesAsync(cancellationToken);
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(IdentityDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Devices)
+                .WithOne(d => d.Costumer);
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Vouchers)
+                .WithOne(v => v.Worker);
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Invoices)
+                .WithOne(i => i.Costumer);
+            modelBuilder.Entity<Voucher>()
+                .HasOne(v => v.Device)
+                .WithOne(d => d.Voucher)
+                .HasForeignKey<Device>(d => d.VoucherId);
+            modelBuilder.Entity<Invoice>()
+                .HasOne(i => i.Voucher)
+                .WithOne(v => v.Inovice)
+                .HasForeignKey<Voucher>(v => v.InvoiceId);
         }
 
     }

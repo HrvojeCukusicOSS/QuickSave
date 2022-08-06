@@ -22,4 +22,8 @@
     <ProjectReference Include="..\QuickSave.Domain\QuickSave.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>
