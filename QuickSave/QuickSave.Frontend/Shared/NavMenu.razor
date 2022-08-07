@@ -13,13 +13,85 @@
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
+            <NavLink class="nav-link" @onclick="()=>expandDevNav = !expandDevNav">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Devices
             </NavLink>
+            @if (expandDevNav)
+            {
+                <NavLink class="expand-menu" href="">
+                    <span>Input</span>
+                </NavLink>
+                <NavLink class="" href="">
+                    <span>In repair</span>
+                </NavLink>
+                <NavLink class="expand-menu" href="">
+                    <span>Repaired</span>
+                </NavLink>
+                <NavLink class="" href="">
+                    <span>To repair</span>
+                </NavLink>
+                <NavLink class="expand-menu" href="">
+                    <span>Being repaired</span>
+                </NavLink>
+                <NavLink class="" href="">
+                    <span>Time line</span>
+                </NavLink>
+            }
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+            <NavLink class="nav-link" @onclick="()=>expandParNav = !expandParNav">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Parts
+            </NavLink>
+            @if (expandParNav)
+            {
+                <NavLink class="expand-menu" href="">
+                    <span>To buy</span>
+                </NavLink>
+                <NavLink class="" href="">
+                    <span>By pc</span>
+                </NavLink>
+                <NavLink class="expand-menu" href="">
+                    <span>To order</span>
+                </NavLink>
+            }
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" @onclick="()=>expandInvNav = !expandInvNav">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Invoices
+            </NavLink>
+            @if (expandInvNav)
+            {
+                <NavLink class="expand-menu" href="">
+                    <span>To pay</span>
+                </NavLink>
+                <NavLink class="" href="">
+                    <span>Paid</span>
+                </NavLink>
+                <NavLink class="" href="">
+                    <span>Not paid</span>
+                </NavLink>
+                <NavLink class="" href="">
+                    <span>Paid by costumer</span>
+                </NavLink>
+            }
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" @onclick="()=>expandVouNav = !expandVouNav">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Voucher
+            </NavLink>
+            @if (expandVouNav)
+            {
+                <NavLink class="expand-menu" href="">
+                    <span>By pc</span>
+                </NavLink>
+                <NavLink class="" href="">
+                    <span>Vouchers</span>
+                </NavLink>
+            }
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="">
+                <span class="oi oi-home" aria-hidden="true"></span> Costumers
             </NavLink>
         </li>
     </ul>
@@ -29,6 +101,11 @@
     private bool collapseNavMenu = true;
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private bool expandDevNav;
+    private bool expandParNav;
+    private bool expandInvNav;
+    private bool expandVouNav;
 
     private void ToggleNavMenu()
     {
