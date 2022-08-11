@@ -157,7 +157,10 @@ namespace QuickSave.Persistence.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CostumerId")
+                    b.Property<int>("CostumerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CostumerId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -166,7 +169,7 @@ namespace QuickSave.Persistence.Migrations
                     b.Property<DateTime>("DateOfPrinting")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateOfTransaction")
+                    b.Property<DateTime?>("DateOfTransaction")
                         .HasColumnType("datetime2");
 
                     b.Property<float>("Discount")
@@ -175,18 +178,12 @@ namespace QuickSave.Persistence.Migrations
                     b.Property<float>("FullAmount")
                         .HasColumnType("real");
 
-                    b.Property<bool>("IsPaid")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("CostumerId");
+                    b.HasIndex("CostumerId1");
 
                     b.ToTable("Invoices");
                 });
@@ -266,7 +263,10 @@ namespace QuickSave.Persistence.Migrations
                     b.Property<string>("Brand")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CostumerId")
+                    b.Property<int>("CostumerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CostumerId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -296,9 +296,6 @@ namespace QuickSave.Persistence.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserProblemSummary")
                         .HasColumnType("nvarchar(max)");
 
@@ -307,7 +304,7 @@ namespace QuickSave.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CostumerId");
+                    b.HasIndex("CostumerId1");
 
                     b.HasIndex("RepairmentId")
                         .IsUnique();
@@ -449,7 +446,7 @@ namespace QuickSave.Persistence.Migrations
                 {
                     b.HasOne("QuickSave.Domain.Entities.User", "Costumer")
                         .WithMany("Invoices")
-                        .HasForeignKey("CostumerId");
+                        .HasForeignKey("CostumerId1");
                 });
 
             modelBuilder.Entity("QuickSave.Domain.Entities.Part", b =>
@@ -472,7 +469,7 @@ namespace QuickSave.Persistence.Migrations
                 {
                     b.HasOne("QuickSave.Domain.Entities.User", "Costumer")
                         .WithMany("Submissions")
-                        .HasForeignKey("CostumerId");
+                        .HasForeignKey("CostumerId1");
 
                     b.HasOne("QuickSave.Domain.Entities.Repairment", "Repairment")
                         .WithOne("Submission")
