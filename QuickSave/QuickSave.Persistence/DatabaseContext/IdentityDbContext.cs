@@ -32,10 +32,10 @@ namespace QuickSave.Persistence.DatabseContext
 
             return base.SaveChanges();
         }
-        DbSet<Device> Devices { get; set; }
+        DbSet<Submission> Submissions { get; set; }
         DbSet<Invoice> Invoices { get; set; }
         DbSet<Part> Parts { get; set; }
-        DbSet<Voucher> Vouchers { get; set; }
+        DbSet<Repairment> Repairments { get; set; }
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return await base.SaveChangesAsync(cancellationToken);
@@ -45,22 +45,22 @@ namespace QuickSave.Persistence.DatabseContext
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(IdentityDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>()
-                .HasMany(u => u.Devices)
+                .HasMany(u => u.Submissions)
                 .WithOne(d => d.Costumer);
-            modelBuilder.Entity<User>()
-                .HasMany(u => u.Vouchers)
-                .WithOne(v => v.Worker);
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Invoices)
                 .WithOne(i => i.Costumer);
-            modelBuilder.Entity<Voucher>()
-                .HasOne(v => v.Device)
-                .WithOne(d => d.Voucher)
-                .HasForeignKey<Device>(d => d.VoucherId);
+            modelBuilder.Entity<Repairment>()
+                .HasOne(r => r.Submission)
+                .WithOne(s => s.Repairment)
+                .HasForeignKey<Submission>(s => s.RepairmentId);
             modelBuilder.Entity<Invoice>()
-                .HasOne(i => i.Voucher)
-                .WithOne(v => v.Inovice)
-                .HasForeignKey<Voucher>(v => v.InvoiceId);
+                .HasOne(i => i.Repairment)
+                .WithOne(r => r.Invoice)
+                .HasForeignKey<Repairment>(r => r.InvoiceId);
+            modelBuilder.Entity<Repairment>()
+                .HasMany(r => r.Parts)
+                .WithOne(p => p.Repairment);
         }
 
     }

@@ -5,37 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Pages\AddDevice.razor" />
-    <Content Remove="Pages\Costumers.razor" />
-    <Content Remove="Pages\DeviceParts.razor" />
-    <Content Remove="Pages\PaidInvoices.razor" />
-    <Content Remove="Pages\Parts.razor" />
-    <Content Remove="Pages\PayingInvoice.razor" />
-    <Content Remove="Pages\RepairedDevices.razor" />
-    <Content Remove="Pages\Vouchers.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Syncfusion.Blazor.SplitButtons" Version="20.2.0.40" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\AddDevice.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\AddDevice.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Pages\Costumers.razor" />
-    <None Include="Pages\Vouchers.razor" />
-    <None Include="Pages\PaidInvoices.razor" />
-    <None Include="Pages\PayingInvoice.razor" />
-    <None Include="Pages\DeviceParts.razor" />
-    <None Include="Pages\Parts.razor" />
-    <None Include="Pages\RepairedDevices.razor" />
-    <None Include="Pages\AddDevice.razor" />
   </ItemGroup>
 
 </Project>
