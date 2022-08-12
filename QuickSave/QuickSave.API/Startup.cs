@@ -42,13 +42,13 @@ namespace QuickSave.API
         {
             var builder = new ContainerBuilder();
 
-            services.AddDbContext<Persistence.DatabseContext.IdentityDbContext>(options =>
+            services.AddDbContext<Persistence.DatabseContext.QuickSaveDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("QuickSaveDatabase"));
             });
 
             services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<Persistence.DatabseContext.IdentityDbContext>()
+                .AddEntityFrameworkStores<Persistence.DatabseContext.QuickSaveDbContext>()
                 .AddDefaultTokenProviders();
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();

@@ -8,4 +8,9 @@
     <PackageReference Include="Syncfusion.Blazor.SplitButtons" Version="20.2.0.40" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\QuickSave.API\QuickSave.API.csproj" />
+    <ProjectReference Include="..\QuickSave.Domain\QuickSave.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

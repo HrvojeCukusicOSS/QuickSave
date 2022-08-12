@@ -8,7 +8,7 @@ using QuickSave.Persistence.DatabseContext;
 
 namespace QuickSave.Persistence.Migrations
 {
-    [DbContext(typeof(IdentityDbContext))]
+    [DbContext(typeof(QuickSaveDbContext))]
     partial class IdentityDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

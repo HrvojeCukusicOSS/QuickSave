@@ -9,7 +9,7 @@ using QuickSave.Persistence.DatabseContext;
 
 namespace QuickSave.Persistence.Migrations
 {
-    [DbContext(typeof(IdentityDbContext))]
+    [DbContext(typeof(QuickSaveDbContext))]
     [Migration("20220810125039_Initial")]
     partial class Initial
     {
