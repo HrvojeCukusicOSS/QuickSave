@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Syncfusion.Blazor.SplitButtons" Version="20.2.0.40" />
+    <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -21,6 +21,5 @@ namespace QuickSave.Domain.Entities
         public DateTime DeviceTakeoverDate { get; set; }
         public string RepairDescription { get; set; }
         public Repairment Repairment { get; set; }
-        public int RepairmentId { get; set; }
     }
 }

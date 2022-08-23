@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Syncfusion.Blazor;
+using QuickSave.Frontend.Services;
 
 namespace QuickSave.Frontend
 {
@@ -29,6 +30,9 @@ namespace QuickSave.Frontend
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSyncfusionBlazor();
+            services.AddScoped<SubmissionService>();
+            services.AddScoped<RepairmentService>();
+            services.AddScoped<UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

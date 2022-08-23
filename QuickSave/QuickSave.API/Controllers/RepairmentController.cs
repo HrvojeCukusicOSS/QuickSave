@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using QuickSave.Domain.Models.User;
 using QuickSave.Persistence.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -12,21 +11,21 @@ namespace Sindikat.Identity.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UsersController : ControllerBase
+    public class RepairmentsController : ControllerBase
     {
-        public UserRepository _userRepository { get; set; }
+        public RepairmentRepository _repairmentRepository { get; set; }
 
-        public UsersController(UserRepository userRepository)
+        public RepairmentsController(RepairmentRepository repairmentRepository)
         {
-            _userRepository = userRepository;
+            _repairmentRepository = repairmentRepository;
         }
         [HttpGet]
-        public IActionResult GetUsers()
+        public IActionResult GetRepairments()
         {
             try
             {
-                var Users = _userRepository.GetUsers();
-                return Ok(Users);
+                var Repairments = _repairmentRepository.GetRepairments();
+                return Ok(Repairments);
             }
             catch (System.Exception)
             {

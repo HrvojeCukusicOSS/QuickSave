@@ -1,9 +1,34 @@
 ﻿@page "/add"
+@inject SubmissionService _submissionService;
+@inject NavigationManager _navigationManager
 
 <h1>Add device</h1>
 
+<EditForm Model="@submission" OnValidSubmit="@AddSubmissionAsync">
+    <SubmissionFields Submission="@submission"></SubmissionFields>
+    <button type="submit" class="btn btn-success">
+        <span class="oi oi-pencil"></span>
+        Add Submission
+    </button>
+    <button type="button" class="btn btn-secondary" @onclick="Close">
+        <span class="oi oi-media-skip-backward"></span>
+        Close
+    </button>
+</EditForm>
 
-<button>Add</button>
 @code{
-
+    public Submission submission { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        submission = new Submission();
+    }
+    private async Task AddSubmissionAsync()
+    {
+        await _submissionService.AddSubmissionAsync(submission);
+        Close();
+    }
+    private async Task Close()
+    {
+        _navigationManager.NavigateTo("/sent");
+    }
 }

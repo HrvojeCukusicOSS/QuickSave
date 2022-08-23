@@ -1,0 +1,59 @@
+﻿@page "/submissionFields"
+@inject UserService _userSerivce
+@inject RepairmentService _repairmentService
+<h3>SubmissionFields</h3>
+
+@if (costumers == null && repairments == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="SubmissionFields">
+        <label for="SubmissionType">Type</label>
+        <InputText id="SubmissionType" class="form-control" @bind-Value="@submission.Type"></InputText>
+        <label for="SubmissionBrand">Brand</label>
+        <InputText id="SubmissionBrand" class="form-control" @bind-Value="@submission.Brand"></InputText>
+        <label for="SubmissionVersion">Version</label>
+        <InputText id="SubmissionVersion" class="form-control" @bind-Value="@submission.Version"></InputText>
+        <InputSelect id="Users" @bind-Value="@submission.CostumerId" class="form-control">
+            <option value="">Select...</option>
+            @foreach (var costumer in costumers)
+            {
+                <option value="@costumer.Id">@costumer.FirstName @costumer.LastName</option>
+            }
+        </InputSelect>
+        <label for="SubmissionUserProblemSummary">User Problem Summary</label>
+        <InputDate id="SubmissionDateOfArrival" class="form-control" @bind-Value="@submission.DateOfArrival"></InputDate>
+        <label for="SubmissionDateOfArrival">Date Of Arrival</label>
+        <InputDate id="SubmissionRepairStartedAt" class="form-control" @bind-Value="@submission.RepairStartedAt"></InputDate>
+        <label for="SubmissionRepairStartedAt">Repair Started At</label>
+        <InputDate id="SubmissionRepairFinishedAt" class="form-control" @bind-Value="@submission.RepairFinishedAt"></InputDate>
+        <label for="SubmissionRepairFinishedAt">Repair Finished At</label>
+        <InputDate id="SubmissionDeviceTakeoverDate" class="form-control" @bind-Value="@submission.DeviceTakeoverDate"></InputDate>
+        <label for="SubmissionDeviceTakeoverDate">Device Takeover Date</label>
+        <InputText id="SubmissionUserProblemSummary" class="form-control" @bind-Value="@submission.UserProblemSummary"></InputText>
+        <label for="SubmissionRepairDescription">Repair Description</label>
+        <InputText id="SubmissionRepairDescription" class="form-control" @bind-Value="@submission.RepairDescription"></InputText>
+        <InputSelect id="Repairment" @bind-Value="@submission.RepairmentId" class="form-control">
+            <option value="">Select...</option>
+            @foreach (var repairment in repairments)
+            {
+                <option value="@repairment.Id">@repairment.Comment</option>
+            }
+        </InputSelect>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public Submission submission { get; set; }
+    public List<User> users { get; set; }
+    public List<Repairment> repairments { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        users = await _userService.GetUsers();
+        repairments = await _repairmentService.GetRepairments();
+    }
+}

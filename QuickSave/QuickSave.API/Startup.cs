@@ -23,6 +23,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Hosting;
+using QuickSave.Persistence.Repositories;
 
 namespace QuickSave.API
 {
@@ -75,6 +76,9 @@ namespace QuickSave.API
                 });
 
             services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Latest);
+            services.AddScoped<SubmissionRepository>();
+            services.AddScoped<UserRepository>();
+            services.AddScoped<RepairmentRepository>();
 
             builder.Populate(services);
             builder.RegisterModule(new InfrastructureModule());

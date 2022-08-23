@@ -32,10 +32,10 @@ namespace QuickSave.Persistence.DatabseContext
 
             return base.SaveChanges();
         }
-        DbSet<Submission> Submissions { get; set; }
-        DbSet<Invoice> Invoices { get; set; }
-        DbSet<Part> Parts { get; set; }
-        DbSet<Repairment> Repairments { get; set; }
+        public DbSet<Submission> Submissions { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<Part> Parts { get; set; }
+        public DbSet<Repairment> Repairments { get; set; }
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return await base.SaveChangesAsync(cancellationToken);
@@ -50,10 +50,10 @@ namespace QuickSave.Persistence.DatabseContext
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Invoices)
                 .WithOne(i => i.Costumer);
-            modelBuilder.Entity<Repairment>()
-                .HasOne(r => r.Submission)
-                .WithOne(s => s.Repairment)
-                .HasForeignKey<Submission>(s => s.RepairmentId);
+            modelBuilder.Entity<Submission>()
+                .HasOne(s => s.Repairment)
+                .WithOne(r => r.Submission)
+                .HasForeignKey<Repairment>(r => r.SubmissionId);
             modelBuilder.Entity<Invoice>()
                 .HasOne(i => i.Repairment)
                 .WithOne(r => r.Invoice)
